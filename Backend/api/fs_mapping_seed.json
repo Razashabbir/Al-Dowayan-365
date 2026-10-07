@@ -1,0 +1,1735 @@
+{
+"ADD SPF": [
+{
+"main_account": "1111001",
+"account_name": "Current Accounts Balances with Rajhi Bank",
+"fsli": "Cash and cash equivalents",
+"note_line": "Bank balances",
+"line_code": "CASH"
+},
+{
+"main_account": "1111002",
+"account_name": "Current Accounts Balances with Al Inma Bank",
+"fsli": "Cash and cash equivalents",
+"note_line": "Bank balances",
+"line_code": "CASH"
+},
+{
+"main_account": "1111003",
+"account_name": "Current Accounts Balances with Riyadh Bank",
+"fsli": "Cash and cash equivalents",
+"note_line": "Bank balances",
+"line_code": "CASH"
+},
+{
+"main_account": "1111004",
+"account_name": "Current Accounts Balances with ANB Bank",
+"fsli": "Cash and cash equivalents",
+"note_line": "Bank balances",
+"line_code": "CASH"
+},
+{
+"main_account": "1111005",
+"account_name": "Current Accounts Balances with Al Bilad Bank",
+"fsli": "Cash and cash equivalents",
+"note_line": "Bank balances",
+"line_code": "CASH"
+},
+{
+"main_account": "1111006",
+"account_name": "Current Accounts Balances with AL Jazera Bank",
+"fsli": "Cash and cash equivalents",
+"note_line": "Bank balances",
+"line_code": "CASH"
+},
+{
+"main_account": "1112002",
+"account_name": "Petty Cash with Employees",
+"fsli": "Cash and cash equivalents",
+"note_line": "Cash in hand",
+"line_code": "CASH"
+},
+{
+"main_account": "1112003",
+"account_name": "Vendor disbursment from petty cah",
+"fsli": "Trade payable",
+"note_line": "Trade payable",
+"line_code": "TP"
+},
+{
+"main_account": "1113001",
+"account_name": "Short term deposits",
+"fsli": "Cash and cash equivalents",
+"note_line": "Short term deposits",
+"line_code": "CASH"
+},
+{
+"main_account": "1114001",
+"account_name": "Cash at Stock Wallet",
+"fsli": "Cash and cash equivalents",
+"note_line": "Short term deposits",
+"line_code": "CASH"
+},
+{
+"main_account": "1121001",
+"account_name": "Equity instruments measured at fair value through profit and",
+"fsli": "Equity instruments measured at fair value through profit or loss",
+"note_line": "",
+"line_code": "EQ_FV"
+},
+{
+"main_account": "1131001",
+"account_name": "Trade Receivables from Rental companies",
+"fsli": "Trade receivable",
+"note_line": "Trade receivables",
+"line_code": "AR"
+},
+{
+"main_account": "1131003",
+"account_name": "Trade Receivables from Sales of Lands",
+"fsli": "Trade receivable",
+"note_line": "Trade receivables",
+"line_code": "AR"
+},
+{
+"main_account": "1131004",
+"account_name": "Provision of Doubtful Debts-Trade Receivable",
+"fsli": "Trade receivable",
+"note_line": "Less: allowance for expected credit loss",
+"line_code": "AR"
+},
+{
+"main_account": "1131005",
+"account_name": "Court order - AR",
+"fsli": "Trade receivable",
+"note_line": "Trade receivables",
+"line_code": "AR"
+},
+{
+"main_account": "1132001",
+"account_name": "Related Party Balances Commercial (Reported Or Disclosed)",
+"fsli": "Amounts due from a related party",
+"note_line": "Amount due from related parties",
+"line_code": "DUE_FROM"
+},
+{
+"main_account": "1132002",
+"account_name": "Intercompany Balances Non commercial (Eliminated In Consolid",
+"fsli": "Amounts due from a related party",
+"note_line": "Amount due from related parties",
+"line_code": "DUE_FROM"
+},
+{
+"main_account": "1133002",
+"account_name": "Letter of Guarantee/ Performance Bond",
+"fsli": "Prepayments and other receivables",
+"note_line": "Margin deposit against letter of guarantee",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1134001",
+"account_name": "Staff Loans of Personal",
+"fsli": "Prepayments and other receivables",
+"note_line": "Employees' receivables",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1135001",
+"account_name": "Advanced payment to payable",
+"fsli": "Prepayments and other receivables",
+"note_line": "Advances to suppliers",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1141003",
+"account_name": "Prepaid Expenses of Medical Insurances",
+"fsli": "Prepayments and other receivables",
+"note_line": "Prepaid rent",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1142001",
+"account_name": "Prepaid Expenses of Rent",
+"fsli": "Prepayments and other receivables",
+"note_line": "Prepaid rent",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1142006",
+"account_name": "Prepaid Expenses of Property insurance",
+"fsli": "Prepayments and other receivables",
+"note_line": "Other receivables",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1142007",
+"account_name": "Prepaid Expenses of ERP cost",
+"fsli": "Prepayments and other receivables",
+"note_line": "Prepaid rent",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1143001",
+"account_name": "Accrued income",
+"fsli": "Prepayments and other receivables",
+"note_line": "Other receivables",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1151001",
+"account_name": "Real Estate Inventory properties",
+"fsli": "Inventory properties",
+"note_line": "Inventory properties",
+"line_code": "INV_PROP"
+},
+{
+"main_account": "1171001",
+"account_name": "ROU Lease",
+"fsli": "Right of use assets",
+"note_line": "Right of use assets",
+"line_code": "ROU"
+},
+{
+"main_account": "1171002",
+"account_name": "Long Term Rent",
+"fsli": "Right of use assets",
+"note_line": "",
+"line_code": "ROU"
+},
+{
+"main_account": "1212001",
+"account_name": "Building at Cost",
+"fsli": "Property and equipment",
+"note_line": "",
+"line_code": "PPE"
+},
+{
+"main_account": "1212002",
+"account_name": "Accumulated depreciation of  buildings",
+"fsli": "Property and equipment",
+"note_line": "",
+"line_code": "PPE"
+},
+{
+"main_account": "1214001",
+"account_name": "Fixtures & Furnitures at Cost",
+"fsli": "Property and equipment",
+"note_line": "",
+"line_code": "PPE"
+},
+{
+"main_account": "1214002",
+"account_name": "Accumulated depreciation of fixture and fittings",
+"fsli": "Property and equipment",
+"note_line": "",
+"line_code": "PPE"
+},
+{
+"main_account": "1215001",
+"account_name": "Hardware at Cost",
+"fsli": "Property and equipment",
+"note_line": "",
+"line_code": "PPE"
+},
+{
+"main_account": "1215002",
+"account_name": "Accumulated depreciation of hardware",
+"fsli": "Property and equipment",
+"note_line": "",
+"line_code": "PPE"
+},
+{
+"main_account": "1216001",
+"account_name": "Office Equipment at Cost",
+"fsli": "Property and equipment",
+"note_line": "",
+"line_code": "PPE"
+},
+{
+"main_account": "1216002",
+"account_name": "Accumulated depreciation of office equipment",
+"fsli": "Property and equipment",
+"note_line": "",
+"line_code": "PPE"
+},
+{
+"main_account": "1217002",
+"account_name": "Accumulated depreciation of Right Of Use Assets",
+"fsli": "Right of use assets",
+"note_line": "",
+"line_code": "ROU"
+},
+{
+"main_account": "1218001",
+"account_name": "Vehicle at Cost",
+"fsli": "Property and equipment",
+"note_line": "",
+"line_code": "PPE"
+},
+{
+"main_account": "1218002",
+"account_name": "Accumulated depreciation of Vehicle",
+"fsli": "Property and equipment",
+"note_line": "",
+"line_code": "PPE"
+},
+{
+"main_account": "1221001",
+"account_name": "Construction In Progress",
+"fsli": "Investment properties",
+"note_line": "",
+"line_code": "IP"
+},
+{
+"main_account": "1231001",
+"account_name": "Investment Properties",
+"fsli": "Investment properties",
+"note_line": "",
+"line_code": "IP"
+},
+{
+"main_account": "1231002",
+"account_name": "Accumulated depreciation of Investment Properties",
+"fsli": "Investment properties",
+"note_line": "",
+"line_code": "IP"
+},
+{
+"main_account": "1241001",
+"account_name": "ERP Software",
+"fsli": "Prepayments and other receivables",
+"note_line": "Advances to suppliers",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1251001",
+"account_name": "Investment in Tazayoud",
+"fsli": "Investment in  a subsidiary",
+"note_line": "",
+"line_code": "INV_SUB"
+},
+{
+"main_account": "1251002",
+"account_name": "Investment in Down Town",
+"fsli": "Prepayments and other receivables",
+"note_line": "Other receivables",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1252001",
+"account_name": "Investemnet in share in realeastate projects",
+"fsli": "Share in result of a subsidiary",
+"note_line": "",
+"line_code": "INV_SUB"
+},
+{
+"main_account": "1253001",
+"account_name": "Equity instruments measured at cost less impairment",
+"fsli": "Equity instruments measured at cost less impairment",
+"note_line": "",
+"line_code": "EQ_COST"
+},
+{
+"main_account": "2111001",
+"account_name": "Local suppliers",
+"fsli": "Trade payable",
+"note_line": "Trade payables",
+"line_code": "TP"
+},
+{
+"main_account": "2113001",
+"account_name": "Main contractors",
+"fsli": "Trade payable",
+"note_line": "Retention payable",
+"line_code": "TP"
+},
+{
+"main_account": "2113002",
+"account_name": "Main contractors",
+"fsli": "Prepayments and other receivables",
+"note_line": "Advances to suppliers",
+"line_code": "PREPAY"
+},
+{
+"main_account": "2115003",
+"account_name": "Related Party -  Alwad Ajyal",
+"fsli": "Due to related party",
+"note_line": "Trade payables - related parties",
+"line_code": "DUE_TO"
+},
+{
+"main_account": "2121002",
+"account_name": "Accrued Vacation Balance",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2121003",
+"account_name": "Accrued Tickets",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2121004",
+"account_name": "Accrued End of Services",
+"fsli": "Employees' defined benefits liabilities",
+"note_line": "",
+"line_code": "EOSB"
+},
+{
+"main_account": "2121005",
+"account_name": "Accrued Of GOSI",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2121006",
+"account_name": "Accrued Of Other Employee Benefit",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2122003",
+"account_name": "Accrued Zakat",
+"fsli": "Provision for Zakat",
+"note_line": "",
+"line_code": "ZAKAT_L"
+},
+{
+"main_account": "2122004",
+"account_name": "Accrued Electricity, Water and Telephone bills",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2122005",
+"account_name": "Accrued Insurance",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2122006",
+"account_name": "Financing Expenses Due/Payable",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued finance costs",
+"line_code": "ACCR"
+},
+{
+"main_account": "2122099",
+"account_name": "Accrued Others",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Others",
+"line_code": "ACCR"
+},
+{
+"main_account": "2123001",
+"account_name": "Unearned Revenue of Rental",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Advance rent",
+"line_code": "ACCR"
+},
+{
+"main_account": "2124003",
+"account_name": "Advance for maintenance of Hayat plaza Mosque from Waqf",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2125001",
+"account_name": "Security deposits",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2141001",
+"account_name": "VAT of Local Sales",
+"fsli": "Prepayments and other receivables",
+"note_line": "VAT receivable",
+"line_code": "PREPAY"
+},
+{
+"main_account": "2143001",
+"account_name": "VAT Settlement",
+"fsli": "Prepayments and other receivables",
+"note_line": "VAT receivable",
+"line_code": "PREPAY"
+},
+{
+"main_account": "2144001",
+"account_name": "Withholding Tax",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2146001",
+"account_name": "Real Estate Tax",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2147001",
+"account_name": "Dividend payable",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Dividends payables",
+"line_code": "ACCR"
+},
+{
+"main_account": "2221001",
+"account_name": "Bank Loan (Long Term)",
+"fsli": "Term Loan",
+"note_line": "Bank Loan (Long Term)",
+"line_code": "TL_NC"
+},
+{
+"main_account": "2221101",
+"account_name": "Obligations of assets leased from others",
+"fsli": "Lease liabilities",
+"note_line": "Lease liabilities",
+"line_code": "LEASE_NC"
+},
+{
+"main_account": "2221102",
+"account_name": "Undue financial income from lease financing",
+"fsli": "Unearned finance income",
+"note_line": "",
+"line_code": "NIFL_NC"
+},
+{
+"main_account": "3111001",
+"account_name": "Issued capital",
+"fsli": "Share capital",
+"note_line": "",
+"line_code": "SHARE"
+},
+{
+"main_account": "3121001",
+"account_name": "Retained earnings (unallocated)",
+"fsli": "Retained earnings",
+"note_line": "",
+"line_code": "RE"
+},
+{
+"main_account": "3151001",
+"account_name": "Statutory reserves",
+"fsli": "Equity",
+"note_line": "",
+"line_code": "EQ_OTH"
+},
+{
+"main_account": "3152001",
+"account_name": "Capital reserves",
+"fsli": "Additional equity contributions",
+"note_line": "",
+"line_code": "CONTRIB"
+},
+{
+"main_account": "4111001",
+"account_name": "Revenue from  Comercial Rental",
+"fsli": "Revenue",
+"note_line": "Rental income",
+"line_code": "REV_RENT"
+},
+{
+"main_account": "4112002",
+"account_name": "Revenue from sale of  Lands",
+"fsli": "Revenue",
+"note_line": "Gain on sale of inventory properties",
+"line_code": "REV_INV"
+},
+{
+"main_account": "4212002",
+"account_name": "Revenues from administrative and other fees",
+"fsli": "Other income, net",
+"note_line": "Others",
+"line_code": "OIN"
+},
+{
+"main_account": "4212006",
+"account_name": "Rental Agreement Discount",
+"fsli": "Revenue",
+"note_line": "Rental income",
+"line_code": "REV_RENT"
+},
+{
+"main_account": "4213001",
+"account_name": "Unrealized gain or losses on Equity instruments measured on",
+"fsli": "Unrealized profit from investment",
+"note_line": "",
+"line_code": "UNR"
+},
+{
+"main_account": "4213002",
+"account_name": "Realized gain or losses on Equity instruments measured on fa",
+"fsli": "Unrealized profit from investment",
+"note_line": "",
+"line_code": "UNR"
+},
+{
+"main_account": "4213003",
+"account_name": "Dividend Income",
+"fsli": "Other income, net",
+"note_line": "Dividend income",
+"line_code": "OIN"
+},
+{
+"main_account": "4216001",
+"account_name": "Profit from disposing of leased assets from others",
+"fsli": "Revenue",
+"note_line": "Gain on derecognition of finance lease",
+"line_code": "REV_FL"
+},
+{
+"main_account": "4217001",
+"account_name": "Funding income from buildings rented from others",
+"fsli": "Finance income",
+"note_line": "Finance income",
+"line_code": "FIN_INC"
+},
+{
+"main_account": "5111003",
+"account_name": "Rent of properties as lessee",
+"fsli": "Sale of investment properties cost",
+"note_line": "",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5111004",
+"account_name": "Safety and Security cost",
+"fsli": "Cost of sales",
+"note_line": "Security expenses",
+"line_code": "COS_RENT"
+},
+{
+"main_account": "5112001",
+"account_name": "Cost of sales of developed real eastate Internal",
+"fsli": "Cost of sales",
+"note_line": "Cost of inventory properties",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5141001",
+"account_name": "Cost of rental  - Employees' costs",
+"fsli": "Cost of sales",
+"note_line": "Employees' costs",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5141002",
+"account_name": "Housing allowance",
+"fsli": "Cost of sales",
+"note_line": "Employees' costs",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5141003",
+"account_name": "Transportation allowance",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5141004",
+"account_name": "Official Assignment Allowance",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5141010",
+"account_name": "HRDF - Human Resource Dev. Fund",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5142001",
+"account_name": "Vacation benefit expense",
+"fsli": "Cost of sales",
+"note_line": "Employees' costs",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5142002",
+"account_name": "End of services benefit expenses \"EOS\"",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5142003",
+"account_name": "Tickets and related expense",
+"fsli": "Cost of sales",
+"note_line": "Employees' costs",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5142005",
+"account_name": "Bonuses and incentives",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5142006",
+"account_name": "Employee training and qualification",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5142007",
+"account_name": "Employee Welfare benefits",
+"fsli": "General and administrative expenses",
+"note_line": "Others",
+"line_code": "GA"
+},
+{
+"main_account": "5143001",
+"account_name": "Social security expense \"GOSI\"",
+"fsli": "General and administrative expenses",
+"note_line": "Social security",
+"line_code": "GA"
+},
+{
+"main_account": "5143003",
+"account_name": "Medical insurance",
+"fsli": "General and administrative expenses",
+"note_line": "Insurance",
+"line_code": "GA"
+},
+{
+"main_account": "5151001",
+"account_name": "Depreciation of  Buildings",
+"fsli": "Cost of sales",
+"note_line": "Depreciation of property and equipment",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5153001",
+"account_name": "Depreciation expenses of investment properties",
+"fsli": "Cost of sales",
+"note_line": "Depreciation of investment properties",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5154001",
+"account_name": "Depreciation of leased assets from others",
+"fsli": "Cost of sales",
+"note_line": "Depreciation of right of use asset",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5162001",
+"account_name": "Digital Marketing",
+"fsli": "Selling and marketing expenses",
+"note_line": "Selling and marketing",
+"line_code": "SM"
+},
+{
+"main_account": "5163001",
+"account_name": "Marketing events",
+"fsli": "Cost of sales",
+"note_line": "Others",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5171001",
+"account_name": "Bank interest",
+"fsli": "Finance costs",
+"note_line": "Interest on term loan",
+"line_code": "FIN_COST"
+},
+{
+"main_account": "5171002",
+"account_name": "Bank Charges",
+"fsli": "General and administrative expenses",
+"note_line": "Others",
+"line_code": "GA"
+},
+{
+"main_account": "5171004",
+"account_name": "Finance cost on end of service benefities",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5171005",
+"account_name": "Finance Expenses Related to Leasing",
+"fsli": "Finance costs",
+"note_line": "Interest on lease liabilities (Note 30)",
+"line_code": "FIN_COST"
+},
+{
+"main_account": "5172001",
+"account_name": "Maintenance and fuel of administrative cars",
+"fsli": "Cost of sales",
+"note_line": "Repairs and maintenance",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5172002",
+"account_name": "Administrative stationery",
+"fsli": "Cost of sales",
+"note_line": "Repairs and maintenance",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5172003",
+"account_name": "General maintenance and restoration of administrative buildi",
+"fsli": "Cost of sales",
+"note_line": "Repairs and maintenance",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5172004",
+"account_name": "Administrative Air Conditioners Maintenance",
+"fsli": "Cost of sales",
+"note_line": "Repairs and maintenance",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5172005",
+"account_name": "Administrative Publications & Office Tools",
+"fsli": "Cost of sales",
+"note_line": "Governmental expenses",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5172006",
+"account_name": "Hospitality and administrative petty cash",
+"fsli": "General and administrative expenses",
+"note_line": "Others",
+"line_code": "GA"
+},
+{
+"main_account": "5172007",
+"account_name": "Administrative advertisements",
+"fsli": "Selling and marketing expenses",
+"note_line": "Selling and marketing",
+"line_code": "SM"
+},
+{
+"main_account": "5172008",
+"account_name": "Cleaning and administrative cleaning materials",
+"fsli": "Cost of sales",
+"note_line": "Utilities",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5172009",
+"account_name": "Mail, receipt and shipping",
+"fsli": "General and administrative expenses",
+"note_line": "Others",
+"line_code": "GA"
+},
+{
+"main_account": "5172010",
+"account_name": "Administrative Electricity & Water",
+"fsli": "Cost of sales",
+"note_line": "Utilities",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5172011",
+"account_name": "Telephone & Internet Administration",
+"fsli": "General and administrative expenses",
+"note_line": "Utilities",
+"line_code": "GA"
+},
+{
+"main_account": "5172012",
+"account_name": "Fuel Administrative Cars",
+"fsli": "General and administrative expenses",
+"note_line": "Utilities",
+"line_code": "GA"
+},
+{
+"main_account": "5172015",
+"account_name": "Professional and consulting services",
+"fsli": "General and administrative expenses",
+"note_line": "Professional fees",
+"line_code": "GA"
+},
+{
+"main_account": "5172016",
+"account_name": "Vehicle insurance",
+"fsli": "General and administrative expenses",
+"note_line": "Insurance",
+"line_code": "GA"
+},
+{
+"main_account": "5172017",
+"account_name": "Property insurance",
+"fsli": "Cost of sales",
+"note_line": "Insurance",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5172019",
+"account_name": "Governmental Expenses",
+"fsli": "General and administrative expenses",
+"note_line": "Government expenses",
+"line_code": "GA"
+},
+{
+"main_account": "5172020",
+"account_name": "ERP/Other Licensing Fee",
+"fsli": "General and administrative expenses",
+"note_line": "Others",
+"line_code": "GA"
+},
+{
+"main_account": "5173001",
+"account_name": "Remuneration  of members of the Board of Directors and Commi",
+"fsli": "General and administrative expenses",
+"note_line": "Board of Directors' remunerations",
+"line_code": "GA"
+},
+{
+"main_account": "5173002",
+"account_name": "Provision for doubt full debts",
+"fsli": "Provision for expected credit loss",
+"note_line": "",
+"line_code": "ECL"
+},
+{
+"main_account": "5180001",
+"account_name": "Vat- related expenses",
+"fsli": "General and administrative expenses",
+"note_line": "VAT expense",
+"line_code": "GA"
+},
+{
+"main_account": "5180002",
+"account_name": "Expenses related to Proportional Deduction",
+"fsli": "General and administrative expenses",
+"note_line": "Withholding tax",
+"line_code": "GA"
+},
+{
+"main_account": "5191001",
+"account_name": "Zakat",
+"fsli": "Zakat expense",
+"note_line": "Zakat expense",
+"line_code": "ZAKAT"
+},
+{
+"main_account": "6111002",
+"account_name": "Remeasurement gain or loss on Actuarial valuation",
+"fsli": "Retained earnings",
+"note_line": "",
+"line_code": "RE"
+},
+{
+"main_account": "1131002",
+"account_name": "Trade Receivables from Sales of Properties",
+"fsli": "Trade receivable",
+"note_line": "Less: allowance for expected credit loss",
+"line_code": "AR"
+},
+{
+"main_account": "1137001",
+"account_name": "Research and development account",
+"fsli": "Prepayments and other receivables",
+"note_line": "Other receivables",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1219001",
+"account_name": "Investment in finance lease (as lessor)",
+"fsli": "Net investment in finance lease",
+"note_line": "",
+"line_code": "NIFL_NC"
+},
+{
+"main_account": "1219002",
+"account_name": "Unearned finance income",
+"fsli": "Net investment in finance lease",
+"note_line": "",
+"line_code": "NIFL_NC"
+},
+{
+"main_account": "1253002",
+"account_name": "Investment in Special Purpose Vehicle (SPV)",
+"fsli": "Prepayments and other receivables",
+"note_line": "Other receivables",
+"line_code": "PREPAY"
+},
+{
+"main_account": "2114001",
+"account_name": "Trade payable Retention",
+"fsli": "Trade payable",
+"note_line": "Retention payable",
+"line_code": "TP_NC"
+},
+{
+"main_account": "4111002",
+"account_name": "Revenue from  Resdential Rental",
+"fsli": "Revenue",
+"note_line": "Rental income",
+"line_code": "REV_RENT"
+},
+{
+"main_account": "4212004",
+"account_name": "Scrap sale revenues",
+"fsli": "Other income, net",
+"note_line": "Income (Loss) disposal of property and equipment",
+"line_code": "OIN"
+},
+{
+"main_account": "4213004",
+"account_name": "Deposit income",
+"fsli": "Other income, net",
+"note_line": "Dividend income",
+"line_code": "OIN"
+},
+{
+"main_account": "4219001",
+"account_name": "Other income",
+"fsli": "Other income",
+"note_line": "Other",
+"line_code": "OI"
+},
+{
+"main_account": "5112003",
+"account_name": "Fines and white land tax 2.5%",
+"fsli": "Cost of sales",
+"note_line": "White land fees",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5141006",
+"account_name": "Over time",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5141009",
+"account_name": "workers",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5151002",
+"account_name": "Depreciation of Fixtures and Furniture",
+"fsli": "Cost of sales",
+"note_line": "Depreciation of property and equipment",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5151003",
+"account_name": "Depreciation of Tools and Equipments",
+"fsli": "General and administrative expenses",
+"note_line": "Depreciation of property and equipment",
+"line_code": "GA"
+},
+{
+"main_account": "5151005",
+"account_name": "Depreciation of Devices & Computers",
+"fsli": "General and administrative expenses",
+"note_line": "Depreciation of property and equipment",
+"line_code": "GA"
+},
+{
+"main_account": "1131007",
+"account_name": "Other Receivables For SPV",
+"fsli": "Trade receivable",
+"note_line": "Trade receivables",
+"line_code": "AR"
+},
+{
+"main_account": "1131008",
+"account_name": "Other Provisions",
+"fsli": "Prepayments and other receivables",
+"note_line": "Advances to suppliers",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1135003",
+"account_name": "Advance Payment For Projects",
+"fsli": "Prepayments and other receivables",
+"note_line": "Advances to suppliers",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1137003",
+"account_name": "Asset Development Works",
+"fsli": "Trade receivable",
+"note_line": "Trade receivables",
+"line_code": "AR"
+},
+{
+"main_account": "1142004",
+"account_name": "Prepaid Expenses of Governmental",
+"fsli": "Trade receivable",
+"note_line": "Trade receivables",
+"line_code": "AR"
+},
+{
+"main_account": "1213002",
+"account_name": "Accumulated depreciation of  buildings",
+"fsli": "Property and equipment",
+"note_line": "",
+"line_code": "PPE"
+},
+{
+"main_account": "1231003",
+"account_name": "Impairment / Revaluation of Investment Properties",
+"fsli": "Investment properties",
+"note_line": "",
+"line_code": "IP"
+},
+{
+"main_account": "2111003",
+"account_name": "Foreign suppliers",
+"fsli": "Trade payable",
+"note_line": "Trade payable",
+"line_code": "TP"
+},
+{
+"main_account": "2111005",
+"account_name": "Land and Building  Vendors",
+"fsli": "Trade payable",
+"note_line": "Trade payable",
+"line_code": "TP"
+},
+{
+"main_account": "2114002",
+"account_name": "Peformance Gaurantee",
+"fsli": "Trade payable",
+"note_line": "Trade payable",
+"line_code": "TP_NC"
+},
+{
+"main_account": "2121001",
+"account_name": "Accrued Salaries",
+"fsli": "Trade payable",
+"note_line": "Trade payable",
+"line_code": "TP"
+},
+{
+"main_account": "2142001",
+"account_name": "VAT of Local Purchases",
+"fsli": "Trade payable",
+"note_line": "Trade payable",
+"line_code": "TP"
+},
+{
+"main_account": "4212001",
+"account_name": "Proceeds from the sale of assets",
+"fsli": "Other income, net",
+"note_line": "Income (Loss) disposal of property and equipment",
+"line_code": "OIN"
+},
+{
+"main_account": "5111005",
+"account_name": "Maintenance related to security and safety",
+"fsli": "General and administrative expenses",
+"note_line": "Utilities",
+"line_code": "GA"
+},
+{
+"main_account": "5141005",
+"account_name": "Other Allowances",
+"fsli": "General and administrative expenses",
+"note_line": "Others",
+"line_code": "GA"
+},
+{
+"main_account": "5141007",
+"account_name": "Absences",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5141011",
+"account_name": "Employee Settlement Expenses",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5141012",
+"account_name": "Other Employee Expenses",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5171003",
+"account_name": "Management fee",
+"fsli": "General and administrative expenses",
+"note_line": "",
+"line_code": "GA"
+},
+{
+"main_account": "5172014",
+"account_name": "Aduit fees",
+"fsli": "General and administrative expenses",
+"note_line": "Professional fees",
+"line_code": "GA"
+},
+{
+"main_account": "5173004",
+"account_name": "Provisions for Others",
+"fsli": "General and administrative expenses",
+"note_line": "Others",
+"line_code": "GA"
+},
+{
+"main_account": "5180003",
+"account_name": "Expenses related to Withholding Tax",
+"fsli": "General and administrative expenses",
+"note_line": "Reversal of) provision for Value Added Tax refundable (“VAT”)",
+"line_code": "GA"
+},
+{
+"main_account": "6111003",
+"account_name": "Error Account",
+"fsli": "General and administrative expenses",
+"note_line": "",
+"line_code": "GA"
+},
+{
+"main_account": "9111001",
+"account_name": "Opening balances of Employee End of Services",
+"fsli": "Employees' defined benefits liabilities",
+"note_line": "",
+"line_code": "EOSB"
+},
+{
+"main_account": "9111005",
+"account_name": "Opening balances of Customers",
+"fsli": "Trade payable",
+"note_line": "Trade payable",
+"line_code": "TP"
+},
+{
+"main_account": "9111010",
+"account_name": "Opening balances of Bank",
+"fsli": "Cash and cash equivalents",
+"note_line": "Short term deposits",
+"line_code": "CASH"
+},
+{
+"main_account": "5161001",
+"account_name": "Sales commissions",
+"fsli": "Selling and marketing expenses",
+"note_line": "",
+"line_code": "SM"
+},
+{
+"main_account": "5173003",
+"account_name": "expenses of members of the Board of Directors and Committees",
+"fsli": "General and administrative expenses",
+"note_line": "Others",
+"line_code": "GA"
+}
+],
+"Tazayud": [
+{
+"main_account": "1111001",
+"account_name": "Current Accounts Balances with Rajhi Bank",
+"fsli": "Cash and cash equivalents",
+"note_line": "Cash at banks",
+"line_code": "CASH"
+},
+{
+"main_account": "1111027",
+"account_name": "Alinma bank - Escrow - Tharwa project",
+"fsli": "Restricted cash",
+"note_line": "",
+"line_code": "RCASH"
+},
+{
+"main_account": "1131002",
+"account_name": "Trade Receivables from Sales of Properties",
+"fsli": "Trade receivable",
+"note_line": "Trade receivables",
+"line_code": "AR"
+},
+{
+"main_account": "1131003",
+"account_name": "Trade Receivables from Sales of Lands",
+"fsli": "Trade receivable",
+"note_line": "Trade receivables",
+"line_code": "AR"
+},
+{
+"main_account": "1132001",
+"account_name": "Related Party Balances Commercial (Reported Or Disclosed)",
+"fsli": "Trade receivable",
+"note_line": "Trade receivables",
+"line_code": "AR"
+},
+{
+"main_account": "1132002",
+"account_name": "Intercompany Balances Non commercial (Eliminated In Consolid",
+"fsli": "Amounts due to the owner",
+"note_line": "",
+"line_code": "DUE_TO"
+},
+{
+"main_account": "1134001",
+"account_name": "Staff Loans of Personal",
+"fsli": "Prepayments and other receivables",
+"note_line": "Employees' receivables",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1135001",
+"account_name": "Advanced payment to payable",
+"fsli": "Prepayments and other receivables",
+"note_line": "Advances to suppliers",
+"line_code": "PREPAY"
+},
+{
+"main_account": "5173004",
+"account_name": "Provisions for Others",
+"fsli": "General and administrative expenses",
+"note_line": "Other",
+"line_code": "GA"
+},
+{
+"main_account": "1137001",
+"account_name": "Research and development account",
+"fsli": "Prepayments and other receivables",
+"note_line": "Other receivables",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1141003",
+"account_name": "Prepaid Expenses of Medical Insurances",
+"fsli": "Prepayments and other receivables",
+"note_line": "Other receivables",
+"line_code": "PREPAY"
+},
+{
+"main_account": "1218003",
+"account_name": "Impairment of Vehicle",
+"fsli": "Projects under development",
+"note_line": "",
+"line_code": "INV_PROP"
+},
+{
+"main_account": "1221001",
+"account_name": "Construction In Progress",
+"fsli": "Projects under development",
+"note_line": "",
+"line_code": "INV_PROP"
+},
+{
+"main_account": "2111001",
+"account_name": "Local suppliers",
+"fsli": "Trade payable",
+"note_line": "",
+"line_code": "TP"
+},
+{
+"main_account": "2111003",
+"account_name": "Foreign suppliers",
+"fsli": "Trade payable",
+"note_line": "",
+"line_code": "TP"
+},
+{
+"main_account": "2113001",
+"account_name": "Main contractors",
+"fsli": "Trade payable",
+"note_line": "",
+"line_code": "TP"
+},
+{
+"main_account": "2114001",
+"account_name": "Trade payable Retention",
+"fsli": "Retention payable",
+"note_line": "Retention payable",
+"line_code": "TP_NC"
+},
+{
+"main_account": "2115002",
+"account_name": "Intercompany Balances Non commercial (Eliminated In Consolid",
+"fsli": "Amounts due to the owner",
+"note_line": "",
+"line_code": "DUE_TO"
+},
+{
+"main_account": "2121001",
+"account_name": "Accrued Salaries",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2121002",
+"account_name": "Accrued Vacation Balance",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2121003",
+"account_name": "Accrued Tickets",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2121004",
+"account_name": "Accrued End of Services",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "End of Service indemnity",
+"line_code": "ACCR"
+},
+{
+"main_account": "2121005",
+"account_name": "Accrued Of GOSI",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2122002",
+"account_name": "Accrued Audit Fees",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Accrued expenses",
+"line_code": "ACCR"
+},
+{
+"main_account": "2122003",
+"account_name": "Accrued Zakat",
+"fsli": "Provision for Zakat",
+"note_line": "Zakat payable",
+"line_code": "ZAKAT_L"
+},
+{
+"main_account": "2124001",
+"account_name": "Advanced payments from Rental",
+"fsli": "Prepayments and other receivables",
+"note_line": "Advances to suppliers",
+"line_code": "PREPAY"
+},
+{
+"main_account": "2124002",
+"account_name": "Advanced payments from  Sales of unit properties",
+"fsli": "Prepayments and other receivables",
+"note_line": "Advances to suppliers",
+"line_code": "PREPAY"
+},
+{
+"main_account": "2141001",
+"account_name": "VAT of Local Sales",
+"fsli": "Prepayments and other receivables",
+"note_line": "VAT receivable",
+"line_code": "PREPAY"
+},
+{
+"main_account": "2142001",
+"account_name": "VAT of Local Purchases",
+"fsli": "Prepayments and other receivables",
+"note_line": "VAT receivable",
+"line_code": "PREPAY"
+},
+{
+"main_account": "2143001",
+"account_name": "VAT Settlement",
+"fsli": "Prepayments and other receivables",
+"note_line": "VAT receivable",
+"line_code": "PREPAY"
+},
+{
+"main_account": "2144001",
+"account_name": "Withholding Tax",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Other",
+"line_code": "ACCR"
+},
+{
+"main_account": "2146001",
+"account_name": "Real Estate Tax",
+"fsli": "Accrued expenses and other liabilities",
+"note_line": "Other",
+"line_code": "ACCR"
+},
+{
+"main_account": "2211001",
+"account_name": "Provisions of End of services (EOS)",
+"fsli": "Employees' defined benefits liabilities",
+"note_line": "",
+"line_code": "EOSB"
+},
+{
+"main_account": "3111001",
+"account_name": "Issued capital",
+"fsli": "Share Capital",
+"note_line": "",
+"line_code": "SHARE"
+},
+{
+"main_account": "3121001",
+"account_name": "Retained earnings (unallocated)",
+"fsli": "Retained earnings",
+"note_line": "",
+"line_code": "RE"
+},
+{
+"main_account": "3151001",
+"account_name": "Statutory reserves",
+"fsli": "Retained earnings",
+"note_line": "",
+"line_code": "RE"
+},
+{
+"main_account": "4112001",
+"account_name": "Revenue from sale of property units",
+"fsli": "Revenue",
+"note_line": "Revenue from sale of developed real estate to a third party",
+"line_code": "REV_INV"
+},
+{
+"main_account": "4121001",
+"account_name": "Revenue genrated from intercompany projects",
+"fsli": "Revenue",
+"note_line": "Revenue from contracting work performed for the Owner (Note 14)",
+"line_code": "REV_PROJ"
+},
+{
+"main_account": "4121003",
+"account_name": "Revenue Genrated From Off Plan Sales",
+"fsli": "Revenue",
+"note_line": "Off plan sales",
+"line_code": "REV_PROJ"
+},
+{
+"main_account": "5112001",
+"account_name": "Cost of sales of developed real eastate Internal",
+"fsli": "Cost of sales",
+"note_line": "Cost of contracting",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5112002",
+"account_name": "Cost of sales of developed real eastate External",
+"fsli": "Cost of sales",
+"note_line": "Cost of sales of developed real estate",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5112003",
+"account_name": "Fines and white land tax 2.5%",
+"fsli": "Cost of sales",
+"note_line": "Cost of contracting",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5112004",
+"account_name": "COS From Off Plan Sales",
+"fsli": "Cost of sales",
+"note_line": "Cost of sales of off-plan units",
+"line_code": "COS_INV"
+},
+{
+"main_account": "5141001",
+"account_name": "Basic salary",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5141002",
+"account_name": "Housing allowance",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5141003",
+"account_name": "Transportation allowance",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5141004",
+"account_name": "Official Assignment Allowance",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5141006",
+"account_name": "Over time",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5141007",
+"account_name": "Absences",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5142001",
+"account_name": "Vacation benefit expense",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5142002",
+"account_name": "End of services benefit expenses \"EOS\"",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5142003",
+"account_name": "Tickets and related expense",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5142005",
+"account_name": "Bonuses and incentives",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5142006",
+"account_name": "Employee training and qualification",
+"fsli": "General and administrative expenses",
+"note_line": "Employees' costs",
+"line_code": "GA"
+},
+{
+"main_account": "5143001",
+"account_name": "Social security expense \"GOSI\"",
+"fsli": "General and administrative expenses",
+"note_line": "Social security",
+"line_code": "GA"
+},
+{
+"main_account": "5143003",
+"account_name": "Medical insurance",
+"fsli": "General and administrative expenses",
+"note_line": "Insurance",
+"line_code": "GA"
+},
+{
+"main_account": "5163001",
+"account_name": "Marketing events",
+"fsli": "Selling and marketing expenses",
+"note_line": "Selling and marketing expenses",
+"line_code": "SM"
+},
+{
+"main_account": "5171003",
+"account_name": "Management fee",
+"fsli": "Selling and marketing expenses",
+"note_line": "Selling and marketing expenses",
+"line_code": "SM"
+},
+{
+"main_account": "5172003",
+"account_name": "General maintenance and restoration of administrative buildi",
+"fsli": "General and administrative expenses",
+"note_line": "Utilities",
+"line_code": "GA"
+},
+{
+"main_account": "5172005",
+"account_name": "Administrative Publications & Office Tools",
+"fsli": "Selling and marketing expenses",
+"note_line": "Selling and marketing expenses",
+"line_code": "SM"
+},
+{
+"main_account": "5172006",
+"account_name": "Hospitality and administrative petty cash",
+"fsli": "General and administrative expenses",
+"note_line": "Other",
+"line_code": "GA"
+},
+{
+"main_account": "5172007",
+"account_name": "Administrative advertisements",
+"fsli": "Selling and marketing expenses",
+"note_line": "Selling and marketing expenses",
+"line_code": "SM"
+},
+{
+"main_account": "5172010",
+"account_name": "Administrative Electricity & Water",
+"fsli": "General and administrative expenses",
+"note_line": "Utilities",
+"line_code": "GA"
+},
+{
+"main_account": "5172011",
+"account_name": "Telephone & Internet Administration",
+"fsli": "General and administrative expenses",
+"note_line": "Utilities",
+"line_code": "GA"
+},
+{
+"main_account": "5172014",
+"account_name": "Aduit fees",
+"fsli": "General and administrative expenses",
+"note_line": "Professional fees",
+"line_code": "GA"
+},
+{
+"main_account": "5172015",
+"account_name": "Professional and consulting services",
+"fsli": "General and administrative expenses",
+"note_line": "Professional fees",
+"line_code": "GA"
+},
+{
+"main_account": "5172019",
+"account_name": "Governmental Expenses",
+"fsli": "General and administrative expenses",
+"note_line": "Government expenses",
+"line_code": "GA"
+},
+{
+"main_account": "6111002",
+"account_name": "Remeasurement gain or loss on Actuarial valuation",
+"fsli": "Retained earnings",
+"note_line": "Other Comprehensive income",
+"line_code": "RE"
+},
+{
+"main_account": "9111005",
+"account_name": "Opening balances of Customers",
+"fsli": "Trade receivable",
+"note_line": "Trade receivables",
+"line_code": "AR"
+},
+{
+"main_account": "9111007",
+"account_name": "Opening balances of Vendors",
+"fsli": "Trade payable",
+"note_line": "",
+"line_code": "TP"
+}
+]
+}
