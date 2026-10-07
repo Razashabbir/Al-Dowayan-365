@@ -1,0 +1,53 @@
+# DEFAULT entity list for NEW connections (each connection's list is then edited on the
+# D365 Connections screen -> Entity catalog, and stored in etl.tenant_entity).
+#   name:       OData entity set name (case-sensitive) - check with:  python test_connection.py <Name>
+#   table:      target table in the SQL schema "stg"
+#   mode:       full        -> truncate + reload every run (master data)
+#               incremental -> re-load a rolling window by date_field (transactions)
+#   select:     optional field list; omit to pull every field (slower, wider table)
+#   date_field: required for incremental
+
+entities:
+  - name: LegalEntities
+    table: legal_entities
+    mode: full
+    select: [LegalEntityId, Name]
+
+  - name: MainAccounts
+    table: main_accounts
+    mode: full
+    # run `python test_connection.py MainAccounts` and add a select list once you know the field names
+
+  - name: CustomersV3
+    table: customers
+    mode: full
+
+  - name: VendorsV2
+    table: vendors
+    mode: full
+
+  # Posted general-ledger lines = the source of every financial dashboard.
+  # In this environment the public GL entity is the BI entity below. If date_field does not exist on it,
+  # the sync falls back to a full load and says so in the job details.
+  - name: GeneralJournalAccountEntryBiEntities
+    table: gl_entries
+    mode: incremental
+    date_field: AccountingDate
+
+  # Journal headers: the BI ledger lines above have NO posting date / company / voucher -
+  # those are on the journal header. The lines' GeneralJournalEntry column = the header's SourceKey.
+  # alternatives = other names the same data has in some D365 versions (first one that exists is used).
+  - name: GeneralJournalEntryBiEntities
+    table: gl_headers
+    mode: full
+    alternatives: [GeneralJournalEntryWBiEntities, GeneralJournalEntries, GeneralJournalEntryCDREntities]
+
+  # Optional - uncomment when needed
+  # - name: CustomerTransactions
+  #   table: customer_transactions
+  #   mode: incremental
+  #   date_field: TransDate
+  # - name: VendorTransactions
+  #   table: vendor_transactions
+  #   mode: incremental
+  #   date_field: TransDate

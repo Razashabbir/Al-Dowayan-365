@@ -1,0 +1,11 @@
+.env
+**/.env
+.venv/
+__pycache__/
+Backend/etl/logs/
+Backend/api/logs/
+Frontend/node_modules/
+Frontend/dist/
+
+# local notes with real connection settings / client secret - never commit
+Claude outputs/

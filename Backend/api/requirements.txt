@@ -1,0 +1,9 @@
+fastapi>=0.111
+uvicorn[standard]>=0.30
+sqlalchemy>=2.0
+pyodbc>=5.1
+python-dotenv>=1.0
+# the API runs the sync engine from ../etl, so it needs the ETL packages too
+-r ../etl/requirements.txt
+openpyxl>=3.1
+reportlab>=4.0
