@@ -3,11 +3,33 @@ import { admin, fmt, fmtDuration, fmtTime, shortMsg } from '../api'
 import Pager, { paginate } from '../components/Pager'
 import { useApp } from '../theme'
 
+const STATUS_TEXT = { OK: 'Loaded successfully', FAILED: 'Failed', Running: 'Loading…', Partial: 'Partly loaded', Failed: 'Failed' }
+/** The ETL note of one table ("full; added 8 columns") in words, for the hover message of the Result column. */
+function explainRun(status, message) {
+  const head = STATUS_TEXT[status] || status || 'Not run yet'
+  if (!message) return head
+  if (status === 'FAILED' || status === 'Failed') return `${head}: ${message}`
+  if (/^skipped/i.test(message)) return `Skipped: ${message.replace(/^skipped:?\s*/i, '')}`
+  const parts = message.split(';').map((p) => p.trim()).filter(Boolean).map((p) => {
+    let m
+    if (p === 'full') return 'All rows reloaded'
+    if ((m = p.match(/^(.+?) from (\d{4}-\d{2}-\d{2})/))) return `Rows changed since ${m[2]} reloaded (by ${m[1]})`
+    if (p === 'table created') return 'SQL table created'
+    if (p === 'table ok') return 'SQL table already up to date'
+    if ((m = p.match(/^added (\d+) columns?$/))) return `${m[1]} new D365 field${m[1] === '1' ? '' : 's'} added to the SQL table`
+    return p.charAt(0).toUpperCase() + p.slice(1)
+  })
+  return [head, ...parts].join('\n• ')
+}
+
 const snake = (name) => name.replace(/(?<!^)(?=[A-Z][a-z])/g, '_').toLowerCase().slice(0, 120)
 
 const utc = (s) => new Date(String(s).endsWith('Z') ? s : `${s}Z`).getTime()   // SQL datetimes come back as UTC without a zone
 
 const pill = (s) => ({ OK: 'pill ok', Partial: 'pill warn', Failed: 'pill bad', FAILED: 'pill bad', Running: 'pill run' }[s] || 'pill')
+/** Status text; while running it shows animated dots: Running. -> Running.. -> Running... */
+const Status = ({ s }) => (s === 'Running'
+  ? <span className="loading-dots" aria-label="Running">Running<i>.</i><i>.</i><i>.</i></span> : s)
 
 /** Tenant dropdown, also used by Counts and History. */
 export function TenantFilter({ value, onChange, allLabel = 'All tenants', required = false, onLoaded }) {
@@ -61,7 +83,12 @@ function JobDetail({ id, onClose, onRetry, onFinished }) {
   const failed = job.steps.filter((s) => s.status === 'FAILED')
   const steps = onlyFailed ? failed : job.steps
   const done = job.steps.filter((s) => s.status !== 'Running').length
-  const pct = job.total_entities ? Math.round((done / job.total_entities) * 100) : 0
+  // finished tables count fully; a table still loading counts by rows loaded / rows D365 reported (expected_rows)
+  const part = (s) => (s.status !== 'Running' ? 1
+    : s.expected_rows > 0 ? Math.min(0.99, (Number(s.rows_loaded) || 0) / s.expected_rows) : 0)
+  const progress = job.total_entities ? job.steps.reduce((a, s) => a + part(s), 0) / job.total_entities : 0
+  const pct = Math.min(100, Math.floor(progress * 100))
+  const unknown = job.steps.some((s) => s.status === 'Running' && !(s.expected_rows > 0))   // older run without row totals
   // every table loaded but the job still running = the reporting tables are being built; it started when the last table ended
   const building = running && job.steps.length > 0 && done >= job.steps.length && done >= job.total_entities
   const buildStart = building ? Math.max(...job.steps.map((s) => utc(s.run_at) + (Number(s.duration_sec) || 0) * 1000)) : 0
@@ -84,7 +111,11 @@ function JobDetail({ id, onClose, onRetry, onFinished }) {
         Started {fmtTime(job.started_at)}{job.finished_at ? ` · finished ${fmtTime(job.finished_at)}` : ''} ·
         {' '}{done} of {job.total_entities} D365 tables · <span title={job.message || ''}>{shortMsg(job.message)}</span>
       </p>
-      {job.status === 'Running' && <div className="progress"><div style={{ width: `${Math.max(pct, 3)}%` }} /></div>}
+      {job.status === 'Running' && (
+        <div className="progress-row">
+          <div className="progress live" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}><div style={{ width: `${Math.max(progress * 100, 2)}%` }} /></div>
+          <span className="progress-pct" title={unknown ? 'This run started before row totals were recorded - the % counts finished tables only' : undefined}>{pct}%</span>
+        </div>)}
       <div className="table-wrap">
         <table>
           <thead><tr><th>D365 Table</th><th>Status</th><th className="num">Rows</th><th className="num">Seconds</th><th>Details</th></tr></thead>
@@ -92,10 +123,13 @@ function JobDetail({ id, onClose, onRetry, onFinished }) {
             {steps.map((s) => (
               <tr key={s.entity}>
                 <td>{s.entity}</td>
-                <td><span className={pill(s.status)}>{s.status === 'Running' ? 'Loading…' : s.status}</span></td>
-                <td className="num">{s.status === 'Running' && s.rows_loaded ? `${fmt(s.rows_loaded)}…` : fmt(s.rows_loaded)}</td>
+                <td><span className={pill(s.status)}>{s.status === 'Running'
+                  ? <span className="loading-dots" aria-label="Loading">Loading<i>.</i><i>.</i><i>.</i></span> : s.status}</span></td>
+                <td className="num">{s.status === 'Running'
+                  ? (s.expected_rows > 0 ? `${fmt(s.rows_loaded || 0)} of ${fmt(s.expected_rows)}` : s.rows_loaded ? `${fmt(s.rows_loaded)}…` : '')
+                  : fmt(s.rows_loaded)}</td>
                 <td className="num">{seconds(s)}</td>
-                <td className="wrap small" title={s.message || ''}>{shortMsg(s.message)}</td>
+                <td className="wrap small" title={explainRun(s.status, s.message)}>{shortMsg(s.message)}</td>
               </tr>
             ))}
             {building && !onlyFailed && (
@@ -155,6 +189,12 @@ export default function Jobs() {
   }, [tenant, status])
 
   useEffect(() => { setTables(null); setOpenJob(null); loadTables() }, [loadTables])
+  // a job started elsewhere (scheduler, command line, another browser) also locks the Run ETL buttons
+  useEffect(() => {
+    if (runningJob) return undefined
+    const t = setInterval(loadTables, 10000)
+    return () => clearInterval(t)
+  }, [runningJob, loadTables])
   useEffect(() => { setCatalog(null); setCatErr(''); setPage(1); setChecked(new Set()) }, [tenant])
   useEffect(() => {
     if (catalog || !tenant) return
@@ -183,11 +223,11 @@ export default function Jobs() {
     setBusy('rebuild'); setMsg(null)
     try {
       const r = await admin(`tenants/${tenant}/refresh-reporting`, { method: 'POST', timeoutMs: 600000 })
-      setMsg({ bad: !r.ok, text: r.message })
+      setMsg({ bad: !r.ok, text: r.message }); window.dispatchEvent(new Event('companies-changed'))
     } catch (e) { setMsg({ bad: true, text: e.message }) }
     setBusy('')
   }
-  const onJobFinished = () => { setRunningJob(null); loadTables(); loadRuns() }
+  const onJobFinished = () => { setRunningJob(null); loadTables(); loadRuns(); window.dispatchEvent(new Event('companies-changed')) }
 
   const byName = new Map((tables || []).map((t) => [t.name, t]))
   // one list of every D365 table: the most recently run first, then the others already loaded, then the rest of the catalogue
@@ -208,6 +248,7 @@ export default function Jobs() {
   })
   const checkedList = [...checked]
   const locked = !!runningJob || !!busy
+  const lockWhy = runningJob ? `Job #${runningJob} is running - wait until it finishes` : busy ? 'Please wait…' : ''
 
   return (
     <div className="page">
@@ -234,7 +275,7 @@ export default function Jobs() {
           <div className="row">
             <h2>D365 Tables {catalog && <span className="muted small">· {catalog.length.toLocaleString()} in this environment</span>}</h2>
             <button onClick={rebuild} disabled={locked}
-                    title="Rebuild the dashboard tables from data already in SQL (no download)">
+                    title={lockWhy || 'Rebuild the dashboard tables from data already in SQL (no download)'}>
               {busy === 'rebuild' ? 'Rebuilding…' : 'Rebuild reports'}
             </button>
           </div>
@@ -248,7 +289,7 @@ export default function Jobs() {
 
           {checked.size > 0 && (
             <div className="bulkbar" role="toolbar" aria-label="Ticked D365 tables">
-              <button className="primary" onClick={() => run(checkedList, 'checked')} disabled={locked}>
+              <button className="primary" onClick={() => run(checkedList, 'checked')} disabled={locked} title={lockWhy || undefined}>
                 {busy === 'checked' ? 'Starting…' : `Run ETL (${checked.size})`}
               </button>
               <button onClick={() => setChecked(new Set())}>Clear</button>
@@ -273,13 +314,13 @@ export default function Jobs() {
                     <td><span className={`tag ${t.mode}`} title={t.date_field || ''}>{t.mode === 'incremental' ? `incr. ${t.date_field}` : 'full'}</span></td>
                     <td className="num">{t.rows == null ? '–' : fmt(t.rows)}</td>
                     <td className="small">{fmtTime(t.last_run)}</td>
-                    <td className="wrap small" title={t.last_message || ''}>
-                      {t.last_status ? <span className={pill(t.last_status)}>{t.last_status}</span> : <span className="muted">never</span>}
+                    <td className="wrap small" title={t.last_status ? explainRun(t.last_status, t.last_message) : 'This table has not been loaded yet'}>
+                      {t.last_status ? <span className={pill(t.last_status)}><Status s={t.last_status} /></span> : <span className="muted">never</span>}
                       {t.last_status === 'FAILED' && <span className="down"> {shortMsg(t.last_message)}</span>}
                     </td>
                     <td className="act">
                       <button className="run-btn" onClick={() => run([t.name], t.name)} disabled={locked}
-                              title={`Run ETL for ${t.name} only`}>
+                              title={lockWhy || `Run ETL for ${t.name} only`}>
                         {busy === t.name ? 'Starting…' : 'Run ETL'}
                       </button>
                     </td>
@@ -319,7 +360,7 @@ export default function Jobs() {
                 {runs?.map((j) => (
                   <tr key={j.job_id} className={`clickable ${openJob === j.job_id ? 'picked' : ''}`} onClick={() => setOpenJob(j.job_id)}>
                     <td>{j.job_id}</td>
-                    <td><span className={pill(j.status)}>{j.status}</span></td>
+                    <td><span className={pill(j.status)}><Status s={j.status} /></span></td>
                     <td className="small">{fmtTime(j.started_at)}</td>
                     <td className="num">{fmtDuration(j.seconds)}</td>
                     <td className="num">{fmt(j.ok_entities)}</td>
