@@ -128,6 +128,10 @@ CREATE TABLE etl.run_log (
     message      nvarchar(4000) NULL,
     INDEX IX_run_log_job (job_id)
 );
+GO
+IF COL_LENGTH('etl.run_log', 'expected_rows') IS NULL
+    ALTER TABLE etl.run_log ADD expected_rows int NULL;    -- rows D365 reported before the load (progress %)
+GO
 
 /* ---------- reporting tables (rebuilt by dw.usp_refresh) ---------- */
 IF OBJECT_ID('dw.dim_account') IS NULL

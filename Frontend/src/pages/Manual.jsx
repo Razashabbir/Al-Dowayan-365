@@ -4,6 +4,7 @@ import { useConfig } from '../config'
 import { Hero3D } from '../components/three'
 import Markdown from '../components/Markdown'
 import { GROUPS, SECTIONS } from './manual/content'
+import { downloadManual } from './manual/export'
 
 const plain = (s) => s.toLowerCase().replace(/[*`_|#>]/g, ' ')
 
@@ -15,6 +16,7 @@ export default function Manual({ go }) {
   const [q, setQ] = useState('')
   const [active, setActive] = useState('introduction')
   const body = useRef(null)
+  const [dl, setDl] = useState('')          // '' | 'busy' | error text
 
   const visible = useMemo(() => SECTIONS.filter((s) => !s.tech || tech), [tech])
   const found = useMemo(() => {
@@ -51,9 +53,24 @@ export default function Manual({ go }) {
         <div className="row tight">
           <input className="man-search" type="search" placeholder="Search the manual…" value={q} onChange={(e) => setQ(e.target.value)} />
           <button onClick={() => window.print()}>Print / PDF</button>
+          <select className="man-download" value="" aria-label="Download the manual" title="Download the whole manual"
+                  disabled={dl === 'busy'}
+                  onChange={async (e) => {
+                    setDl('busy')
+                    try { await downloadManual(e.target.value, { sections: visible, groups: GROUPS, company: config.company_name }); setDl('') }
+                    catch (err) { setDl(`PDF not created: ${err.message}`) }
+                  }}>
+            <option value="" hidden>{dl === 'busy' ? 'Preparing…' : 'Download…'}</option>
+            <option value="pdf">PDF (.pdf)</option>
+            <option value="word">Word (.docx)</option>
+            <option value="html">Web page (.html)</option>
+            <option value="md">Markdown (.md)</option>
+            <option value="txt">Plain text (.txt)</option>
+          </select>
         </div>
       </header>
 
+      {dl && dl !== 'busy' && <div className="alert bad no-print">{dl}</div>}
       <div className="man-layout">
         <nav className="man-toc card no-print" aria-label="Contents">
           {GROUPS.map((g) => {

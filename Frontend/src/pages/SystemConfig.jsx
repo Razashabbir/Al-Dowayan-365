@@ -114,8 +114,8 @@ export default function SystemConfig() {
         </MotionCard>
 
         <MotionCard as="section" hover={false} className="card">
-          <h2>Defaults for new browsers</h2>
-          <p className="muted small">Used until a user picks their own theme or language in the top bar.</p>
+          <h2>Theme &amp; language</h2>
+          <p className="muted small">Saving a new theme switches everyone to it (each user can still pick another in the top bar). The language is used until a user picks their own.</p>
           <div className="form-grid">
             <label>Theme
               <select value={v.default_theme} onChange={set('default_theme')}>

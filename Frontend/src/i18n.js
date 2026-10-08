@@ -7,7 +7,8 @@ export const AR = {
   'System Configuration': 'إعدادات النظام', 'AI Assistant': 'المساعد الذكي', 'Data Assistant': 'مساعد البيانات', 'Data Assistant is switched on': 'مساعد البيانات مفعّل', 'Working…': 'جارٍ العمل…', 'General & branding': 'عام والهوية',
   'Company name': 'اسم الشركة', 'Logo letters': 'أحرف الشعار', 'Tagline (under the name)': 'الشعار النصي (تحت الاسم)',
   'Sign-in page message': 'رسالة صفحة الدخول', 'Upload logo…': 'رفع الشعار…', 'Remove logo (use letters)': 'إزالة الشعار (استخدام الأحرف)',
-  'Defaults for new browsers': 'الإعدادات الافتراضية للمتصفحات الجديدة', 'Language': 'اللغة',
+  'Defaults for new browsers': 'الإعدادات الافتراضية للمتصفحات الجديدة', 'Theme & language': 'المظهر واللغة',
+  'Saving a new theme switches everyone to it (each user can still pick another in the top bar). The language is used until a user picks their own.': 'حفظ مظهر جديد يطبّقه على جميع المستخدمين (ويمكن لكل مستخدم اختيار مظهر آخر من الشريط العلوي). تُستخدم اللغة حتى يختار المستخدم لغته.', 'Language': 'اللغة',
   'Currency & numbers': 'العملة والأرقام', 'Currency code': 'رمز العملة', 'Decimals': 'المنازل العشرية', 'Negative numbers': 'الأرقام السالبة',
   'Preview': 'معاينة', 'Save': 'حفظ', 'Undo changes': 'تراجع عن التغييرات', 'Model': 'النموذج', 'Model id': 'معرف النموذج',
   'AI Assistant is switched on': 'المساعد الذكي مفعّل', 'New chat': 'محادثة جديدة', 'Ask': 'اسأل', 'Thinking…': 'يفكر…',
@@ -132,7 +133,7 @@ export const AR = {
   'Enter the admin key (ADMIN_API_KEY in etl\\.env) to manage D365 tenants and ETL jobs.':
     'أدخل مفتاح الإدارة (ADMIN_API_KEY في etl\\.env) لإدارة مستأجري D365 ومهام ETL.',
   // common
-  'Loading…': 'جارٍ التحميل…', 'Close': 'إغلاق', 'Cancel': 'إلغاء', 'Edit': 'تعديل', 'Delete': 'حذف', 'Retry': 'إعادة المحاولة',
+  'Loading…': 'جارٍ التحميل…', 'Loading': 'جارٍ التحميل', 'Close': 'إغلاق', 'Cancel': 'إلغاء', 'Edit': 'تعديل', 'Delete': 'حذف', 'Retry': 'إعادة المحاولة',
   'All': 'الكل', 'Status': 'الحالة', 'Tenant': 'المستأجر', 'All tenants': 'كل المستأجرين', 'Rows': 'الصفوف',
   'Seconds': 'ثوانٍ', 'Details': 'التفاصيل', 'Message': 'الرسالة', 'Started': 'بدأت', 'Duration': 'المدة', 'Time': 'الوقت',
   'Trigger': 'المشغّل', 'Manual': 'يدوي', 'Scheduled': 'مجدول', 'Name': 'الاسم', 'Total': 'الإجمالي', 'Export CSV': 'تصدير CSV',

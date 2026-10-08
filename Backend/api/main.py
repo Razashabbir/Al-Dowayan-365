@@ -522,6 +522,8 @@ budget.register(app, tn.engine, rows)                       # Reports › Budget
 ageing.register(app, tn.engine)                             # Reports › Customer & Vendor Ageing
 import bookmarks                                                                                 # noqa: E402
 bookmarks.register(app, tn.engine)                          # star in the top bar → Home › Bookmarks
+import manual_pdf                                                                                # noqa: E402
+manual_pdf.register(app)                                    # System Manual › Download › PDF
 import cash_forecast                                                                             # noqa: E402
 cash_forecast.register(app, tn.engine, rows, FROM_GL, CASH_NAMES)   # Reports › Cash Flow Forecast
 analytics.register(app, tn.engine, rows)                    # Dashboards › Sales / Purchasing / Fixed Assets

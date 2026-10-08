@@ -98,7 +98,13 @@ export function AppProvider({ children }) {
     LOGO_TEXT = cfg.short_name || 'AD'
     LOGO_IMG = cfg.logo || ''
     applyTheme(resolveTheme(themeId, custom))                  // favicon letters
-    if (!CHOSEN.theme && cfg.default_theme && cfg.default_theme !== themeId) setThemeId(cfg.default_theme)
+    // the theme saved in System Configuration is applied to every browser once, when it changes
+    // (users can still pick another one afterwards; an unchanged default never overrides their pick)
+    const seen = read('ad-theme-default', null)
+    if (cfg.default_theme && seen !== cfg.default_theme) {
+      write('ad-theme-default', cfg.default_theme)
+      if (cfg.default_theme !== themeId) setThemeId(cfg.default_theme)
+    } else if (!CHOSEN.theme && cfg.default_theme && cfg.default_theme !== themeId) setThemeId(cfg.default_theme)
     if (!CHOSEN.font && cfg.default_language && cfg.default_language !== font) setFont(cfg.default_language)
   }
   const chooseTheme = (id) => { CHOSEN.theme = true; setThemeId(id) }

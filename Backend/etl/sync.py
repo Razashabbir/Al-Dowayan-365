@@ -94,6 +94,14 @@ def _log_start(job_id, tenant_key, entity) -> int:
                  {"j": job_id, "k": tenant_key, "e": entity}, scalar=True)
 
 
+def _log_expected(log_id, rows):
+    """Rows D365 says the entity has, so the Jobs page can show real progress inside a long table."""
+    try:
+        _exec("UPDATE etl.run_log SET expected_rows=:n WHERE id=:i", {"n": int(rows), "i": log_id})
+    except Exception as ex:  # older database without the column: progress only
+        print("expected rows not saved:", str(ex)[:150])
+
+
 def _log_update(log_id, rows, status=None, seconds=None, message=None):
     sets, p = ["rows_loaded=:r"], {"r": rows, "i": log_id}
     if status:
@@ -218,7 +226,7 @@ def _set_watermark(tenant_key, table, value: date):
             {"k": tenant_key, "t": table, "v": value.isoformat()})
 
 
-def sync_entity(client, md: Metadata, tenant_key: int, e: dict, full: bool, progress=None) -> tuple[int, str]:
+def sync_entity(client, md: Metadata, tenant_key: int, e: dict, full: bool, progress=None, expected=None) -> tuple[int, str]:
     name, table = e["name"], e["table"]
     alias_note = ""
     if not md.has(name):  # same data under another name in this D365 version?
@@ -242,12 +250,21 @@ def sync_entity(client, md: Metadata, tenant_key: int, e: dict, full: bool, prog
     if field:
         wm = None if full else _watermark(tenant_key, table)
         start = (wm - timedelta(days=LOOKBACK)) if wm else INITIAL_FROM
-        recs = client.iter_entity(name, e.get("select"), f"{field} ge {start.isoformat()}T00:00:00Z")
+        flt = f"{field} ge {start.isoformat()}T00:00:00Z"
+        if expected:
+            c = client.count(name, flt)
+            if c is not None:
+                expected(c)
+        recs = client.iter_entity(name, e.get("select"), flt)
         # first load / full: replace all of this tenant's rows; otherwise replace only the window
         n, newest = stream_load(recs, table, tenant_key, field if wm else None, start if wm else None, progress)
         _set_watermark(tenant_key, table, newest or start)
         note = f"{field} from {start}"
     else:
+        if expected:
+            c = client.count(name)
+            if c is not None:
+                expected(c)
         n, _ = stream_load(client.iter_entity(name, e.get("select")), table, tenant_key, progress=progress)
         note = "full"
     return n, f"{note}; {schema_note}{fallback}{alias_note}"
@@ -378,7 +395,8 @@ def run_job(job_id: int, log=print):
                     try:
                         client = client_for(k)  # own HTTP session per worker
                         n, note = sync_entity(client, md, k, e, full,
-                                              progress=lambda rows: (_log_update(lid, rows), _heartbeat(job_id)))
+                                              progress=lambda rows: (_log_update(lid, rows), _heartbeat(job_id)),
+                                              expected=lambda rows: _log_expected(lid, rows))
                         break
                     except Exception as ex:
                         if attempt == 2 or not is_transient(ex):
@@ -438,7 +456,9 @@ def job_status(job_id: int) -> dict | None:
         job = cn.execute(text("SELECT * FROM etl.sync_job WHERE job_id=:j"), {"j": job_id}).mappings().first()
         if not job:
             return None
-        steps = cn.execute(text("""SELECT entity, status, rows_loaded, duration_sec, message, run_at
+        has_exp = cn.execute(text("SELECT COL_LENGTH('etl.run_log', 'expected_rows')")).scalar() is not None
+        steps = cn.execute(text(f"""SELECT entity, status, rows_loaded, duration_sec, message, run_at,
+                                          {'expected_rows' if has_exp else 'CAST(NULL AS int) AS expected_rows'}
                                    FROM etl.run_log WHERE job_id=:j ORDER BY id"""), {"j": job_id}).mappings().all()
         total = len(set(filter(None, (job["entities"] or "").split(",")))) or cn.execute(text(
             "SELECT COUNT(*) FROM etl.tenant_entity WHERE tenant_key=:k AND enabled=1"),

@@ -44,9 +44,22 @@ def register(app, engine, ops, store, log):
                                   "detail": (last["message"] or "")[:1500], "link": "/etl/jobs"})
                 ok = as_datetime(cn.execute(text("SELECT MAX(finished_at) FROM etl.sync_job WHERE tenant_key=:k AND status='OK'"), {"k": k}).scalar())
                 if not ok or ok < datetime.utcnow() - timedelta(days=stale):
+                    # say what actually happened, so a failed or still-running job is not mistaken for "ETL was never run"
+                    if last:
+                        msg = " ".join((last["message"] or "").split())[:300]
+                        lastrun = (f"Latest run: job #{last['job_id']} {last['status']}"
+                                   + (f" on {as_datetime(last['finished_at']):%d %b %Y %H:%M} UTC" if last["finished_at"] else "")
+                                   + (f" - {msg}" if msg and last["status"] != "OK" else ""))
+                    else:
+                        lastrun = "No ETL job has been run yet."
+                    running = cn.execute(text("SELECT TOP 1 job_id FROM etl.sync_job WHERE tenant_key=:k AND status='Running' ORDER BY job_id DESC"),
+                                         {"k": k}).scalar()
+                    if running:
+                        lastrun += f" Job #{running} is running now."
                     found.append({"fp": f"stale:{k}", "tenant_key": k, "kind": "etl_stale", "severity": "warn",
-                                  "title": f"No successful ETL for {stale}+ days - {t['name']}",
-                                  "detail": f"Last successful run: {ok:%d %b %Y %H:%M} UTC" if ok else "No successful ETL yet.", "link": "/etl/jobs"})
+                                  "title": (f"No successful ETL for {stale}+ days - {t['name']}" if ok
+                                            else f"No successful ETL yet - {t['name']}"),
+                                  "detail": (f"Last successful run: {ok:%d %b %Y %H:%M} UTC. " if ok else "") + lastrun, "link": "/etl/jobs"})
                 # trial balance per company must net to zero (double entry)
                 for r in cn.execute(text("""SELECT company, SUM(amount) AS s, COUNT_BIG(*) AS n FROM dw.fact_gl WHERE tenant_key=:k
                                             GROUP BY company HAVING ABS(SUM(amount)) > 1"""), {"k": k}).mappings():

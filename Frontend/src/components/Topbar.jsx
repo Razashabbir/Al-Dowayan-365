@@ -67,10 +67,13 @@ function CompanyPicker() {
         const def = rows.find((r) => r.is_default) || rows[0]
         setScope({ tenant: def.tenant_key, company: def.company })
       }
-      if (!rows.length) timer = setTimeout(load, 30000)   // nothing loaded yet - look again later
+      timer = setTimeout(load, rows.length ? 60000 : 30000)   // stay current after an ETL run or a data reset
     }).catch((e) => { setErr(e.message); setList([]); timer = setTimeout(load, 15000) })
+    const again = () => { clearTimeout(timer); load() }
     load()
-    return () => clearTimeout(timer)
+    window.addEventListener('focus', again)                  // back to the tab: refresh at once
+    window.addEventListener('companies-changed', again)      // fired when an ETL job finishes
+    return () => { clearTimeout(timer); window.removeEventListener('focus', again); window.removeEventListener('companies-changed', again) }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // always visible, so it is clear why there is nothing to pick

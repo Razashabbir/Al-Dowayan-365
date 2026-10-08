@@ -153,6 +153,17 @@ class D365Client:
             url = data.get("@odata.nextLink")
             params = None  # nextLink already carries the query string
 
+    def count(self, entity: str, filter_: str | None = None) -> int | None:
+        """How many records the entity has (same filter as the load) - used for the job's progress %.
+        Best effort: None when D365 does not answer $count."""
+        params = {"cross-company": "true"}
+        if filter_:
+            params["$filter"] = filter_
+        try:
+            return int(self.get(f"{self.base_url}/data/{entity}/$count", params=params).text.strip().lstrip("\ufeff"))
+        except Exception:  # noqa: BLE001 - progress only, never stop a load for it
+            return None
+
     def metadata(self) -> str:
         return self.get(f"{self.base_url}/data/$metadata", accept_xml=True).text
 

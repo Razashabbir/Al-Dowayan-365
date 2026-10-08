@@ -174,7 +174,9 @@ select, input, button { font: inherit; font-size: 14px; padding: 7px 10px; borde
 input:focus, select:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
 button { cursor: pointer; }
 button:hover:not(:disabled) { border-color: var(--accent); }
-button:disabled { opacity: .5; cursor: default; }
+button:disabled { opacity: .5; }
+/* anything that cannot be used right now shows the 'not allowed' cursor */
+:is(button, input, select, textarea):disabled, label.check:has(input:disabled) { cursor: not-allowed !important; }
 button.primary { background: var(--grad); border-color: transparent; color: #fff; font-weight: 600; box-shadow: 0 4px 12px color-mix(in srgb, var(--accent-base) 28%, transparent); }
 button.primary:hover:not(:disabled) { filter: brightness(1.06); border-color: transparent; }
 button.danger { background: var(--down); border-color: var(--down); color: #fff; }
@@ -778,6 +780,9 @@ table.worksheet .ws-comp { background: color-mix(in srgb, var(--grid) 55%, trans
 .cfg-unsaved { position: sticky; bottom: 16px; z-index: 5; display: flex; align-items: center; gap: 10px; margin-top: 16px; padding: 12px 16px;
                border-radius: 12px; background: var(--card); border: 1px solid var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,.12); }
 .cfg-unsaved span { flex: 1; font-size: 13.5px; }
+/* keep Undo / Save clear of the floating Ask button in the corner */
+body:has(.ask-widget) .cfg-unsaved { padding-inline-end: 150px; }
+@media (max-width: 700px) { body:has(.ask-widget) .cfg-unsaved { padding-inline-end: 16px; margin-bottom: 70px; } }
 
 /* ---- AI Assistant: saved chats + Ask pop-up ---- */
 .ai-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 16px; align-items: stretch; flex: 1; }
@@ -1027,7 +1032,6 @@ table.worksheet .ws-comp { background: color-mix(in srgb, var(--grid) 55%, trans
 .bell-acts .linkish { font-size: 12px; }
 .bell-all { width: 100%; border: 0; border-top: 1px solid var(--border); border-radius: 0; padding: 11px; background: var(--card); color: var(--accent); font-weight: 600; cursor: pointer; }
 .bell-all:hover { background: var(--accent-soft); }
-@media (prefers-reduced-motion: no-preference) { .menu.bell-pop { animation: popIn .18s ease; } }
 @keyframes popIn { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity: 1; transform: none; } }
 [dir=rtl] .menu.bell-pop { left: 0; right: auto; }
 
@@ -1098,3 +1102,159 @@ table.cff-items td, table.cff-items th { padding: 7px 10px; vertical-align: top;
 /* donut charts: total in the middle */
 .donut-total { font-size: 20px; font-weight: 800; fill: var(--text); font-variant-numeric: tabular-nums; }
 .donut-total-label { font-size: 11px; fill: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+
+/* ---- animated tooltips (components/tooltip.js; any element with title="") ---- */
+.tip { position: fixed; top: 0; left: 0; z-index: 9999; max-width: min(320px, calc(100vw - 16px)); pointer-events: none;
+       padding: 7px 11px; border-radius: 9px; background: var(--text); color: var(--card); font-size: 12.5px; line-height: 1.4;
+       font-weight: 500; box-shadow: 0 10px 28px rgba(0,0,0,.22), 0 2px 6px rgba(0,0,0,.12); white-space: pre-line; overflow-wrap: anywhere;
+       opacity: 0; visibility: hidden; transform-origin: var(--arrow, 50%) 100%; }
+.tip[data-side='bottom'] { transform-origin: var(--arrow, 50%) 0%; }
+.tip::before { content: ''; position: absolute; inset-inline-start: 0; top: 7px; bottom: 7px; width: 3px; border-radius: 0 3px 3px 0;
+               background: var(--accent); }
+.tip-arrow { position: absolute; left: var(--arrow, 50%); bottom: -5px; width: 10px; height: 10px; margin-left: -5px;
+             background: var(--text); transform: rotate(45deg); border-radius: 2px; }
+.tip[data-side='bottom'] .tip-arrow { bottom: auto; top: -5px; }
+.tip.on { opacity: 1; visibility: visible; }
+@media (prefers-reduced-motion: no-preference) {
+  .tip.on { animation: tipIn .26s cubic-bezier(.2, 1.35, .4, 1) both; }
+  .tip.on[data-side='bottom'] { animation-name: tipInDown; }
+  .tip.on > span { display: inline-block; animation: tipText .32s .06s ease both; }
+}
+@keyframes tipIn     { from { opacity: 0; transform: translateY(6px) scale(.88); }  to { opacity: 1; transform: none; } }
+@keyframes tipInDown { from { opacity: 0; transform: translateY(-6px) scale(.88); } to { opacity: 1; transform: none; } }
+@keyframes tipText   { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+
+/* ---- animated drop-down lists (components/selects.js) ---- */
+select:not([multiple]) { appearance: none; -webkit-appearance: none; cursor: pointer; padding-inline-end: 30px;
+  /* one solid triangle (single layer, so no seam at any zoom or font), in the theme colour */
+  background-image: conic-gradient(from -45deg at 50% 100%, var(--accent) 0 90deg, transparent 90deg);
+  background-size: 10px 6px; background-repeat: no-repeat; background-position: right 11px center;
+  transition: border-color .15s, box-shadow .15s; }
+/* the arrow sits at the end of the text: on the left in Arabic, except for lists kept left-to-right (company list) */
+[dir=rtl] select:not([multiple]):not([dir=ltr]), select[dir=rtl]:not([multiple]) { background-position: left 11px center; }
+select:not([multiple]):hover:not(:disabled) { border-color: var(--accent); }
+select.sel-open { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
+  background-image: conic-gradient(from 135deg at 50% 0%, var(--accent) 0 90deg, transparent 90deg); }
+
+.sel-pop { position: fixed; z-index: 9998; display: flex; flex-direction: column; max-width: min(420px, calc(100vw - 16px));
+  background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0,0,0,.18), 0 3px 10px rgba(0,0,0,.08); font-size: 13.5px; transform-origin: top center; }
+.sel-pop[data-side='up'] { transform-origin: bottom center; }
+.sel-pop::before { content: ''; display: block; height: 3px; flex: 0 0 auto;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 35%, transparent)); }
+.sel-search { margin: 8px 8px 2px; padding: 7px 10px; border-radius: 8px; font-size: 13px; }
+.sel-list { overflow-y: auto; padding: 5px; overscroll-behavior: contain; }
+.sel-group { padding: 8px 10px 4px; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.sel-opt { position: relative; display: flex; align-items: center; gap: 8px; padding: 8px 30px 8px 10px; border-radius: 8px;
+  cursor: pointer; white-space: nowrap; transition: background .12s, color .12s, padding .15s; }
+.sel-opt > span { overflow: hidden; text-overflow: ellipsis; }
+.sel-opt.act { background: var(--accent-soft); color: var(--text); padding-inline-start: 14px; }
+.sel-opt.on { color: var(--accent); font-weight: 600; }
+.sel-opt.on::after { content: ''; position: absolute; inset-inline-end: 12px; top: 50%; width: 5px; height: 10px; margin-top: -7px;
+  border: solid var(--accent); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.sel-opt.off { cursor: not-allowed; color: var(--muted); }
+.sel-opt.off > span { opacity: .55; text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--muted) 50%, transparent); }
+.sel-opt[hidden], .sel-group[hidden] { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .sel-pop { animation: selIn .45s cubic-bezier(.22, 1, .36, 1) both; }
+  .sel-pop.sel-pop.closing { animation: selOut .22s ease-in both; }
+  .sel-opt, .sel-group { animation: selItem .35s ease both; animation-delay: calc(80ms + var(--i, 0) * 32ms); }
+  .sel-opt.on::after { animation: selTick .35s .3s ease both; }
+}
+.sel-pop.closing { pointer-events: none; }
+@keyframes selIn   { from { opacity: 0; clip-path: inset(0 0 100% 0 round 12px); transform: translateY(-8px); }
+                     40% { opacity: 1; } to { opacity: 1; clip-path: inset(0 0 0 0 round 12px); transform: none; } }
+.sel-pop[data-side='up'] { animation-name: selInUp; }
+@keyframes selInUp { from { opacity: 0; clip-path: inset(100% 0 0 0 round 12px); transform: translateY(8px); }
+                     40% { opacity: 1; } to { opacity: 1; clip-path: inset(0 0 0 0 round 12px); transform: none; } }
+@keyframes selOut  { to { opacity: 0; clip-path: inset(0 0 60% 0 round 12px); transform: translateY(-6px); } }
+@keyframes selItem { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@keyframes selTick { from { opacity: 0; transform: rotate(45deg) scale(.3); } to { opacity: 1; transform: rotate(45deg) scale(1); } }
+/* every other pop-up menu (theme, user, bell) also opens with an animation */
+/* every top-bar pop-up menu (theme, user, alerts bell) unrolls slowly like the drop-down lists */
+.menu { transform-origin: top center; }
+.menu .menu-item.on { color: var(--accent); }
+.menu .menu-item.on::after { content: ''; margin-inline-start: auto; width: 5px; height: 10px; margin-top: -3px;
+  border: solid var(--accent); border-width: 0 2px 2px 0; transform: rotate(45deg); flex: 0 0 auto; }
+.top-btn[aria-expanded='true'] { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+@media (prefers-reduced-motion: no-preference) {
+  .menu, .menu.bell-pop { animation: selIn .45s cubic-bezier(.22, 1, .36, 1) both; }
+  .menu > .menu-item, .menu > .custom-row, .menu .bell-head, .menu .bell-item, .menu .bell-all { animation: selItem .35s ease both; animation-delay: 80ms; }
+  .menu > :nth-child(2), .menu .bell-item:nth-child(1) { animation-delay: 112ms; }
+  .menu > :nth-child(3), .menu .bell-item:nth-child(2) { animation-delay: 144ms; }
+  .menu > :nth-child(4), .menu .bell-item:nth-child(3) { animation-delay: 176ms; }
+  .menu > :nth-child(5), .menu .bell-item:nth-child(4) { animation-delay: 208ms; }
+  .menu > :nth-child(6), .menu .bell-item:nth-child(5) { animation-delay: 240ms; }
+  .menu > :nth-child(7), .menu .bell-item:nth-child(6) { animation-delay: 272ms; }
+  .menu > :nth-child(8), .menu .bell-item:nth-child(7) { animation-delay: 304ms; }
+  .menu > :nth-child(n+9), .menu .bell-item:nth-child(n+8), .menu .bell-all { animation-delay: 336ms; }
+  .menu .menu-item .swatch { animation: menuSwatch .4s cubic-bezier(.2, 1.4, .4, 1) both; animation-delay: inherit; }
+  .menu .menu-item.on::after { animation: selTick .35s .35s ease both; }
+}
+@keyframes menuSwatch { from { transform: scale(0); } to { transform: scale(1); } }
+
+/* ---- moving background in every page header (.hero), in the theme's colours ---- */
+.hero { position: relative; overflow: hidden; isolation: isolate; }
+.hero > * { position: relative; z-index: 1; }
+.hero::before, .hero::after { content: ''; position: absolute; pointer-events: none; z-index: 0; }
+/* soft glowing blobs drifting slowly */
+.hero::before { inset: -60%;
+  background:
+    radial-gradient(circle at 30% 40%, color-mix(in srgb, var(--theme-end) 70%, white) 0, transparent 22%),
+    radial-gradient(circle at 70% 60%, color-mix(in srgb, var(--theme-start) 60%, black) 0, transparent 26%),
+    radial-gradient(circle at 55% 30%, rgba(255,255,255,.35) 0, transparent 14%);
+  filter: blur(28px); opacity: .55; }
+/* a light shine sweeping across now and then */
+.hero::after { inset: 0; background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.16) 48%, rgba(255,255,255,.04) 54%, transparent 62%);
+  background-size: 250% 100%; background-position: 160% 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero { background-size: 180% 180%; animation: heroShift 14s ease-in-out infinite alternate; }
+  .hero::before { animation: heroBlobs 18s ease-in-out infinite alternate; }
+  .hero::after { animation: heroShine 7s ease-in-out 1s infinite; }
+}
+@keyframes heroShift { from { background-position: 0% 40%; } to { background-position: 100% 60%; } }
+@keyframes heroBlobs {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50%  { transform: translate(8%, -6%) rotate(25deg) scale(1.08); }
+  100% { transform: translate(-6%, 5%) rotate(-15deg) scale(.96); }
+}
+@keyframes heroShine { 0%, 55% { background-position: 160% 0; } 100% { background-position: -60% 0; } }
+.hero.hero-3d > .hero-canvas { z-index: 0 !important; }
+@media print { .hero::before, .hero::after { display: none; } .hero { animation: none; } }
+
+/* ---- running job progress bar: stripes moving, light sweeping, glowing tip ---- */
+.progress-row { display: flex; align-items: center; gap: 10px; }
+.progress-row .progress { flex: 1; }
+.progress-pct { font-size: 12px; font-weight: 700; color: var(--accent); min-width: 36px; text-align: end; font-variant-numeric: tabular-nums; }
+.progress.live { height: 8px; position: relative; box-shadow: inset 0 1px 2px rgba(0,0,0,.06); }
+.progress.live > div { position: relative; border-radius: 999px; overflow: hidden; transition: width .6s cubic-bezier(.2,.9,.3,1);
+  background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,.22) 0 8px, transparent 8px 16px), var(--grad);
+  background-size: 22.6px 22.6px, 100% 100%;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent-base) 45%, transparent); }
+.progress.live > div::before { content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); transform: translateX(-100%); }
+.progress.live > div::after { content: ''; position: absolute; top: 50%; right: 0; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%;
+  background: #fff; box-shadow: 0 0 8px 3px color-mix(in srgb, var(--theme-end) 80%, white); }
+@media (prefers-reduced-motion: no-preference) {
+  .progress.live > div { animation: progStripes .8s linear infinite; }
+  .progress.live > div::before { animation: progSweep 1.8s ease-in-out infinite; }
+  .progress.live > div::after { animation: progTip 1.2s ease-in-out infinite; }
+  .progress-pct { animation: progPct 1.6s ease-in-out infinite; }
+}
+@keyframes progStripes { from { background-position: 0 0, 0 0; } to { background-position: 22.6px 0, 0 0; } }
+@keyframes progSweep { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+@keyframes progTip { 0%, 100% { opacity: .55; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.15); } }
+@keyframes progPct { 0%, 100% { opacity: 1; } 50% { opacity: .65; } }
+[dir=rtl] .progress.live > div::after { right: auto; left: 0; }
+
+/* "Loading." -> "Loading.." -> "Loading..." on a table that is still loading */
+.loading-dots { white-space: nowrap; }
+.loading-dots i { font-style: normal; display: inline-block; width: .32em; }
+@media (prefers-reduced-motion: no-preference) {
+  .loading-dots i { opacity: 0; animation: dot1 1.5s steps(1, end) infinite; }
+  .loading-dots i:nth-of-type(2) { animation-name: dot2; }
+  .loading-dots i:nth-of-type(3) { animation-name: dot3; }
+}
+@keyframes dot1 { 0% { opacity: 1; } 100% { opacity: 1; } }
+@keyframes dot2 { 0% { opacity: 0; } 33.3% { opacity: 1; } 100% { opacity: 1; } }
+@keyframes dot3 { 0% { opacity: 0; } 66.6% { opacity: 1; } 100% { opacity: 1; } }
